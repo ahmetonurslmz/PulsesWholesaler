@@ -119,9 +119,9 @@
             this.lblPulsesType.AutoSize = true;
             this.lblPulsesType.Location = new System.Drawing.Point(70, 112);
             this.lblPulsesType.Name = "lblPulsesType";
-            this.lblPulsesType.Size = new System.Drawing.Size(93, 18);
+            this.lblPulsesType.Size = new System.Drawing.Size(85, 18);
             this.lblPulsesType.TabIndex = 4;
-            this.lblPulsesType.Text = "Pulses Type:";
+            this.lblPulsesType.Text = "Pulse Type:";
             // 
             // txtPulsesQuantity
             // 
@@ -135,9 +135,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(48, 142);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 18);
+            this.label4.Size = new System.Drawing.Size(107, 18);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Pulses Quantity:";
+            this.label4.Text = "Pulse Quantity:";
             // 
             // comboPulsesType
             // 
