@@ -32,7 +32,6 @@
             this.groupBoxStockStatus = new System.Windows.Forms.GroupBox();
             this.groupBoxSalesDetails = new System.Windows.Forms.GroupBox();
             this.lblCustomerTcId = new System.Windows.Forms.Label();
-            this.txtCustomerTcId = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblCustomerFullName = new System.Windows.Forms.Label();
             this.lblPulsesType = new System.Windows.Forms.Label();
@@ -40,11 +39,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.comboPulsesType = new System.Windows.Forms.ComboBox();
             this.btnAddSales = new System.Windows.Forms.Button();
+            this.maskedTxtCustomerTcId = new System.Windows.Forms.MaskedTextBox();
             this.groupBoxCustomerInformation.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxCustomerInformation
             // 
+            this.groupBoxCustomerInformation.Controls.Add(this.maskedTxtCustomerTcId);
             this.groupBoxCustomerInformation.Controls.Add(this.btnAddSales);
             this.groupBoxCustomerInformation.Controls.Add(this.comboPulsesType);
             this.groupBoxCustomerInformation.Controls.Add(this.txtPulsesQuantity);
@@ -52,7 +53,6 @@
             this.groupBoxCustomerInformation.Controls.Add(this.lblPulsesType);
             this.groupBoxCustomerInformation.Controls.Add(this.textBox1);
             this.groupBoxCustomerInformation.Controls.Add(this.lblCustomerFullName);
-            this.groupBoxCustomerInformation.Controls.Add(this.txtCustomerTcId);
             this.groupBoxCustomerInformation.Controls.Add(this.lblCustomerTcId);
             this.groupBoxCustomerInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.groupBoxCustomerInformation.Location = new System.Drawing.Point(12, 12);
@@ -90,13 +90,6 @@
             this.lblCustomerTcId.Size = new System.Drawing.Size(128, 18);
             this.lblCustomerTcId.TabIndex = 0;
             this.lblCustomerTcId.Text = "Customer T.C. ID:";
-            // 
-            // txtCustomerTcId
-            // 
-            this.txtCustomerTcId.Location = new System.Drawing.Point(169, 43);
-            this.txtCustomerTcId.Name = "txtCustomerTcId";
-            this.txtCustomerTcId.Size = new System.Drawing.Size(119, 24);
-            this.txtCustomerTcId.TabIndex = 1;
             // 
             // textBox1
             // 
@@ -156,6 +149,16 @@
             this.btnAddSales.Text = "Add Sales";
             this.btnAddSales.UseVisualStyleBackColor = true;
             // 
+            // maskedTxtCustomerTcId
+            // 
+            this.maskedTxtCustomerTcId.CausesValidation = false;
+            this.maskedTxtCustomerTcId.Location = new System.Drawing.Point(169, 40);
+            this.maskedTxtCustomerTcId.Mask = "00000000000";
+            this.maskedTxtCustomerTcId.Name = "maskedTxtCustomerTcId";
+            this.maskedTxtCustomerTcId.Size = new System.Drawing.Size(119, 24);
+            this.maskedTxtCustomerTcId.TabIndex = 10;
+            this.maskedTxtCustomerTcId.ValidatingType = typeof(int);
+            // 
             // PulsesWholesaler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -185,8 +188,8 @@
         private System.Windows.Forms.Label lblPulsesType;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblCustomerFullName;
-        private System.Windows.Forms.TextBox txtCustomerTcId;
         private System.Windows.Forms.Label lblCustomerTcId;
+        private System.Windows.Forms.MaskedTextBox maskedTxtCustomerTcId;
     }
 }
 
