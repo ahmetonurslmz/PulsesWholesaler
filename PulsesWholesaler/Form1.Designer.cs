@@ -34,10 +34,10 @@
             this.lblCustomerTcId = new System.Windows.Forms.Label();
             this.txtCustomerFullName = new System.Windows.Forms.TextBox();
             this.lblCustomerFullName = new System.Windows.Forms.Label();
-            this.lblPulsesType = new System.Windows.Forms.Label();
-            this.txtPulsesQuantity = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboPulsesType = new System.Windows.Forms.ComboBox();
+            this.lblPulseType = new System.Windows.Forms.Label();
+            this.txtPulseQuantity = new System.Windows.Forms.TextBox();
+            this.lblPulseQuantity = new System.Windows.Forms.Label();
+            this.comboPulseType = new System.Windows.Forms.ComboBox();
             this.btnAddSales = new System.Windows.Forms.Button();
             this.maskedTxtCustomerTcId = new System.Windows.Forms.MaskedTextBox();
             this.groupBoxCustomerInformation.SuspendLayout();
@@ -47,10 +47,10 @@
             // 
             this.groupBoxCustomerInformation.Controls.Add(this.maskedTxtCustomerTcId);
             this.groupBoxCustomerInformation.Controls.Add(this.btnAddSales);
-            this.groupBoxCustomerInformation.Controls.Add(this.comboPulsesType);
-            this.groupBoxCustomerInformation.Controls.Add(this.txtPulsesQuantity);
-            this.groupBoxCustomerInformation.Controls.Add(this.label4);
-            this.groupBoxCustomerInformation.Controls.Add(this.lblPulsesType);
+            this.groupBoxCustomerInformation.Controls.Add(this.comboPulseType);
+            this.groupBoxCustomerInformation.Controls.Add(this.txtPulseQuantity);
+            this.groupBoxCustomerInformation.Controls.Add(this.lblPulseQuantity);
+            this.groupBoxCustomerInformation.Controls.Add(this.lblPulseType);
             this.groupBoxCustomerInformation.Controls.Add(this.txtCustomerFullName);
             this.groupBoxCustomerInformation.Controls.Add(this.lblCustomerFullName);
             this.groupBoxCustomerInformation.Controls.Add(this.lblCustomerTcId);
@@ -107,38 +107,38 @@
             this.lblCustomerFullName.TabIndex = 2;
             this.lblCustomerFullName.Text = "Customer Full Name:";
             // 
-            // lblPulsesType
+            // lblPulseType
             // 
-            this.lblPulsesType.AutoSize = true;
-            this.lblPulsesType.Location = new System.Drawing.Point(70, 112);
-            this.lblPulsesType.Name = "lblPulsesType";
-            this.lblPulsesType.Size = new System.Drawing.Size(85, 18);
-            this.lblPulsesType.TabIndex = 4;
-            this.lblPulsesType.Text = "Pulse Type:";
+            this.lblPulseType.AutoSize = true;
+            this.lblPulseType.Location = new System.Drawing.Point(70, 112);
+            this.lblPulseType.Name = "lblPulseType";
+            this.lblPulseType.Size = new System.Drawing.Size(85, 18);
+            this.lblPulseType.TabIndex = 4;
+            this.lblPulseType.Text = "Pulse Type:";
             // 
-            // txtPulsesQuantity
+            // txtPulseQuantity
             // 
-            this.txtPulsesQuantity.Location = new System.Drawing.Point(169, 139);
-            this.txtPulsesQuantity.Name = "txtPulsesQuantity";
-            this.txtPulsesQuantity.Size = new System.Drawing.Size(119, 24);
-            this.txtPulsesQuantity.TabIndex = 7;
+            this.txtPulseQuantity.Location = new System.Drawing.Point(169, 139);
+            this.txtPulseQuantity.Name = "txtPulseQuantity";
+            this.txtPulseQuantity.Size = new System.Drawing.Size(119, 24);
+            this.txtPulseQuantity.TabIndex = 7;
             // 
-            // label4
+            // lblPulseQuantity
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(48, 142);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 18);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Pulse Quantity:";
+            this.lblPulseQuantity.AutoSize = true;
+            this.lblPulseQuantity.Location = new System.Drawing.Point(48, 142);
+            this.lblPulseQuantity.Name = "lblPulseQuantity";
+            this.lblPulseQuantity.Size = new System.Drawing.Size(107, 18);
+            this.lblPulseQuantity.TabIndex = 6;
+            this.lblPulseQuantity.Text = "Pulse Quantity:";
             // 
-            // comboPulsesType
+            // comboPulseType
             // 
-            this.comboPulsesType.FormattingEnabled = true;
-            this.comboPulsesType.Location = new System.Drawing.Point(169, 107);
-            this.comboPulsesType.Name = "comboPulsesType";
-            this.comboPulsesType.Size = new System.Drawing.Size(119, 26);
-            this.comboPulsesType.TabIndex = 8;
+            this.comboPulseType.FormattingEnabled = true;
+            this.comboPulseType.Location = new System.Drawing.Point(169, 107);
+            this.comboPulseType.Name = "comboPulseType";
+            this.comboPulseType.Size = new System.Drawing.Size(119, 26);
+            this.comboPulseType.TabIndex = 8;
             // 
             // btnAddSales
             // 
@@ -183,10 +183,10 @@
         private System.Windows.Forms.GroupBox groupBoxStockStatus;
         private System.Windows.Forms.GroupBox groupBoxSalesDetails;
         private System.Windows.Forms.Button btnAddSales;
-        private System.Windows.Forms.ComboBox comboPulsesType;
-        private System.Windows.Forms.TextBox txtPulsesQuantity;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblPulsesType;
+        private System.Windows.Forms.ComboBox comboPulseType;
+        private System.Windows.Forms.TextBox txtPulseQuantity;
+        private System.Windows.Forms.Label lblPulseQuantity;
+        private System.Windows.Forms.Label lblPulseType;
         private System.Windows.Forms.TextBox txtCustomerFullName;
         private System.Windows.Forms.Label lblCustomerFullName;
         private System.Windows.Forms.Label lblCustomerTcId;

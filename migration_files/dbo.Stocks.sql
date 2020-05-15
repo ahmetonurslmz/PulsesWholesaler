@@ -1,9 +1,7 @@
 ﻿CREATE TABLE [dbo].[Stocks] (
-    [stock_id]   INT        NOT NULL IDENTITY(1,1),
+    [stock_id]   INT        IDENTITY (1, 1) NOT NULL,
     [stock_size] INT        NULL,
-    [pulse_name] NCHAR (20) NOT NULL,
+    [pulse_name] VARCHAR (20) NOT NULL,
     PRIMARY KEY CLUSTERED ([stock_id] ASC)
 );
-
-
 

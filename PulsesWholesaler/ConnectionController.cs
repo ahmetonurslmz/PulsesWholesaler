@@ -12,18 +12,36 @@ namespace PulsesWholesaler
 {
     class ConnectionController
     {
-        private string connectionString = Properties.Settings.Default.ConnectionString;
+        private string _connectionString = Properties.Settings.Default.ConnectionString;
+        SqlConnection connection;
+        SqlDataAdapter sqlDA;
 
-
-        public void OpenConnection()
+        public Object OpenConnection()
         {
-            SqlConnection connection = new SqlConnection(connectionString);
+            connection = new SqlConnection(_connectionString);
 
             if (connection.State == ConnectionState.Closed)
             {
                 connection.Open();
             }
 
+            return connection;
+        }
+
+        public DataSet GetData(string query, string table)
+        {
+            return retrieveObjects(query, table);
+        }
+
+        private DataSet retrieveObjects(string query, string table)
+        {
+            this.OpenConnection();
+
+            sqlDA = new SqlDataAdapter(query, connection);
+            DataSet data_set = new DataSet();
+            sqlDA.Fill(data_set, table);
+            connection.Close();
+            return data_set;
         }
     }
 }
