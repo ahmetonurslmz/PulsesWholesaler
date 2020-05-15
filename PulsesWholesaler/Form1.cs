@@ -12,9 +12,17 @@ namespace PulsesWholesaler
 {
     public partial class PulsesWholesaler : Form
     {
+        ConnectionController connection;
+
         public PulsesWholesaler()
         {
             InitializeComponent();
+            connection = new ConnectionController();
+        }
+
+        private void PulsesWholesaler_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

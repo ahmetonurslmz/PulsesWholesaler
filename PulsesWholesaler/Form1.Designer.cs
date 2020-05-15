@@ -166,6 +166,7 @@
             this.Controls.Add(this.groupBoxCustomerInformation);
             this.Name = "PulsesWholesaler";
             this.Text = "Pulses Wholesaler";
+            this.Load += new System.EventHandler(this.PulsesWholesaler_Load);
             this.groupBoxCustomerInformation.ResumeLayout(false);
             this.groupBoxCustomerInformation.PerformLayout();
             this.ResumeLayout(false);
