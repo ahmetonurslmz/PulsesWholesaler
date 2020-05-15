@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PulsesWholesaler
 {
-    public partial class Form1 : Form
+    public partial class PulsesWholesaler : Form
     {
-        public Form1()
+        public PulsesWholesaler()
         {
             InitializeComponent();
         }
