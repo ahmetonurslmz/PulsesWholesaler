@@ -18,6 +18,7 @@ namespace PulsesWholesaler
         {
             InitializeComponent();
             connection = new ConnectionController();
+            connection.OpenConnection();
         }
 
         private void PulsesWholesaler_Load(object sender, EventArgs e)

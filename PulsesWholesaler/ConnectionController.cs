@@ -22,7 +22,6 @@ namespace PulsesWholesaler
             if (connection.State == ConnectionState.Closed)
             {
                 connection.Open();
-                MessageBox.Show("Connection successfully!");
             }
 
         }
