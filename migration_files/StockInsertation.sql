@@ -1,0 +1,1 @@
+﻿INSERT INTO [dbo].[Stocks] (stock_size, pulse_name) values (100, 'Rice')

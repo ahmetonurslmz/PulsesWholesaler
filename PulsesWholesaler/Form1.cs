@@ -25,5 +25,13 @@ namespace PulsesWholesaler
         {
 
         }
+
+        private void btnAddSales_Click(object sender, EventArgs e)
+        {
+            int customerTcId = Convert.ToInt32(maskedTxtCustomerTcId.Text);
+            string customerFullName = txtCustomerFullName.Text;
+            int pulseType = Convert.ToInt32(comboPulsesType.SelectedItem.ToString());
+            int pulseQuantity = Convert.ToInt32(txtPulseQuantity);
+        }
     }
 }
