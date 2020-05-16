@@ -14,7 +14,7 @@ namespace PulsesWholesaler
     {
         private string _connectionString = Properties.Settings.Default.ConnectionString;
         SqlConnection connection;
-        SqlDataAdapter sqlDA;
+        SqlDataAdapter sqlAdapter;
 
         public Object OpenConnection()
         {
@@ -37,9 +37,9 @@ namespace PulsesWholesaler
         {
             this.OpenConnection();
 
-            sqlDA = new SqlDataAdapter(query, connection);
+            sqlAdapter = new SqlDataAdapter(query, connection);
             DataSet data_set = new DataSet();
-            sqlDA.Fill(data_set, table);
+            sqlAdapter.Fill(data_set, table);
             connection.Close();
             return data_set;
         }
