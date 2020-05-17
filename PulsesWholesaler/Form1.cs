@@ -97,6 +97,12 @@ namespace PulsesWholesaler
                 {
                     fetchSales();
                     clearCustomerInformationForm();
+                    pulseStocks = new PulseStocks();
+                    Boolean pulseStockUpdateResult = pulseStocks.decreaseStockSize(pulseType, pulseQuantity);
+                    if (pulseStockUpdateResult)
+                    {
+                        fetchStocks();
+                    }
                 }
             }
             catch (Exception error)
@@ -104,6 +110,13 @@ namespace PulsesWholesaler
                 MessageBox.Show(error.Message.ToString(), "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            pulseStocks = new PulseStocks();
+            pulseStocks.fillAllPulseStocks();
+            fetchStocks();
         }
 
         private Boolean checkPulseStockAvailability(int pulseType, int pulseQuantity) {
@@ -175,6 +188,8 @@ namespace PulsesWholesaler
                 button.Left = 324;
                 button.Text = "Reload";
                 button.Name = "btnReload";
+                button.Click += new System.EventHandler(this.btnReload_Click);
+
                 grpStockStatus.Controls.Add(button);
             }
             catch (Exception error)
