@@ -13,8 +13,8 @@ namespace PulsesWholesaler
 {
     public partial class PulsesWholesaler : Form
     {
-        ConnectionController connection;
         PulseStocks pulseStocks;
+        Sales sales;
         BindingSource binder = new BindingSource();
 
         public PulsesWholesaler()
@@ -73,14 +73,17 @@ namespace PulsesWholesaler
                 if (txtPulseQuantity.Text.ToString().Length != 0)
                 {
                     pulseQuantity = Convert.ToInt32(txtPulseQuantity.Text);
+
+                    // checking selected pulse type whether or not has enough stocks.
+                    if (!checkPulseStockAvailability(pulseType, pulseQuantity))
+                    {
+                        throw new Exception("Pulse stock is not enough for adding sales.");
+                    }
                 }
                 else
                 {
                     throw new Exception("You must enter pulse quantity.");
                 }
-
-                Console.WriteLine(customerTcId.ToString(), customerFullName, pulseType.ToString(), pulseQuantity.ToString());
-
             } catch (Exception error)
             {
                 MessageBox.Show(error.Message.ToString(), "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -88,26 +91,19 @@ namespace PulsesWholesaler
 
         }
 
-        private void checkPulseStockAvailability() { 
-        
+        private Boolean checkPulseStockAvailability(int pulseType, int pulseQuantity) {
+            pulseStocks = new PulseStocks();
+            return pulseStocks.checkStockAvailability(pulseType, pulseQuantity);
         }
 
         private void fetchSales()
         {
             try
             {
-                using (SqlConnection con = connection.connect())
-                {
-                    if (con.State.ToString() == "Open")
-                    {
-                        SqlCommand allSalesCmd = new SqlCommand("PfetchSales", con);
-                        SqlDataAdapter sqlDa = new SqlDataAdapter(allSalesCmd);
-                        DataTable dt = new DataTable();
-                        sqlDa.Fill(dt);
-                        binder.DataSource = dt;
-                        dgvSales.DataSource = binder;
-                    }
-                }
+                sales = new Sales();
+                binder.DataSource = sales.fetch();
+                dgvSales.DataSource = binder;
+
             } catch (Exception error)
             {
                 MessageBox.Show(error.Message.ToString(), "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -116,64 +112,55 @@ namespace PulsesWholesaler
 
         private void fetchStocks()
         {
-            connection = new ConnectionController();
-
             try
             {
-                using (SqlConnection con = connection.connect())
+                grpStockStatus.Controls.Clear();
+
+                // fetch Current Stocks
+                pulseStocks = new PulseStocks();
+                DataSet data_set = pulseStocks.fetch();
+
+
+                int count = data_set.Tables[0].Rows.Count;
+
+                // create dictionary to gather pulse stock item its inside and set comboBox source.
+                Dictionary<int, string> comboSource = new Dictionary<int, string>();
+
+                for (int i = 0; i < count; i++)
                 {
-                    if (con.State.ToString() == "Open")
-                    {
-                        grpStockStatus.Controls.Clear();
+                    DataRow table = data_set.Tables[0].Rows[i];
 
-                        // fetch Current Stocks
-                        pulseStocks = new PulseStocks();
-                        DataSet data_set = pulseStocks.fetch(con);
-
-
-                        int count = data_set.Tables[0].Rows.Count;
-
-                        // create dictionary to gather pulse stock item its inside and set comboBox source.
-                        Dictionary<int, string> comboSource = new Dictionary<int, string>();
-
-                        for (int i = 0; i < count; i++)
-                        {
-                            DataRow table = data_set.Tables[0].Rows[i];
-
-                            // If pulse stock is not enough for next sales, do not add to comboBox source.
-                            if (Convert.ToInt32(table.ItemArray.GetValue(1).ToString()) != 0) {
-                               comboSource.Add(Convert.ToInt32(table.ItemArray.GetValue(0).ToString()), table.ItemArray.GetValue(2).ToString());
-                            }
-
-                            ProgressBar progressBar = new ProgressBar();
-                            Label label = new Label();
-                            label.Text = table.ItemArray.GetValue(2).ToString() + ':';
-                            label.Top = 30 + (i * 30);
-                            label.Left = 10;
-                            label.Width = 100;
-                            progressBar.Top = 30 + (i * 30);
-                            progressBar.Left = 120;
-                            progressBar.Width = 200;
-                            progressBar.Maximum = 1000;
-                            progressBar.Value = Convert.ToInt32(table.ItemArray.GetValue(1).ToString());
-                            grpStockStatus.Controls.Add(label);
-                            grpStockStatus.Controls.Add(progressBar);
-                        }
-
-                        comboPulseType.DataSource = new BindingSource(comboSource, null);
-                        comboPulseType.DisplayMember = "Value";
-                        comboPulseType.ValueMember = "Key";
-
-                        // Create Reload Stock Button
-                        Button button = new Button();
-                        button.Top = 177;
-                        button.Left = 324;
-                        button.Text = "Reload";
-                        button.Name = "btnReload";
-                        grpStockStatus.Controls.Add(button);
-
+                    // If pulse stock is not enough for next sales, do not add to comboBox source.
+                    if (Convert.ToInt32(table.ItemArray.GetValue(1).ToString()) != 0) {
+                        comboSource.Add(Convert.ToInt32(table.ItemArray.GetValue(0).ToString()), table.ItemArray.GetValue(2).ToString());
                     }
+
+                    ProgressBar progressBar = new ProgressBar();
+                    Label label = new Label();
+                    label.Text = table.ItemArray.GetValue(2).ToString() + ':';
+                    label.Top = 30 + (i * 30);
+                    label.Left = 10;
+                    label.Width = 100;
+                    progressBar.Top = 30 + (i * 30);
+                    progressBar.Left = 120;
+                    progressBar.Width = 200;
+                    progressBar.Maximum = 1000;
+                    progressBar.Value = Convert.ToInt32(table.ItemArray.GetValue(1).ToString());
+                    grpStockStatus.Controls.Add(label);
+                    grpStockStatus.Controls.Add(progressBar);
                 }
+
+                comboPulseType.DataSource = new BindingSource(comboSource, null);
+                comboPulseType.DisplayMember = "Value";
+                comboPulseType.ValueMember = "Key";
+
+                // Create Reload Stock Button
+                Button button = new Button();
+                button.Top = 177;
+                button.Left = 324;
+                button.Text = "Reload";
+                button.Name = "btnReload";
+                grpStockStatus.Controls.Add(button);
             }
             catch (Exception error)
             {
