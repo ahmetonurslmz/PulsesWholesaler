@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grpCustomerInformation = new System.Windows.Forms.GroupBox();
+            this.txtPulseQuantity = new System.Windows.Forms.MaskedTextBox();
             this.maskedTxtCustomerTcId = new System.Windows.Forms.MaskedTextBox();
             this.btnAddSales = new System.Windows.Forms.Button();
             this.comboPulseType = new System.Windows.Forms.ComboBox();
@@ -40,9 +41,11 @@
             this.grpStockStatus = new System.Windows.Forms.GroupBox();
             this.btnReload = new System.Windows.Forms.Button();
             this.grpSalesDetails = new System.Windows.Forms.GroupBox();
-            this.txtPulseQuantity = new System.Windows.Forms.MaskedTextBox();
+            this.dgvSales = new System.Windows.Forms.DataGridView();
             this.grpCustomerInformation.SuspendLayout();
             this.grpStockStatus.SuspendLayout();
+            this.grpSalesDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSales)).BeginInit();
             this.SuspendLayout();
             // 
             // grpCustomerInformation
@@ -64,6 +67,15 @@
             this.grpCustomerInformation.TabStop = false;
             this.grpCustomerInformation.Text = "Customer Information";
             // 
+            // txtPulseQuantity
+            // 
+            this.txtPulseQuantity.Location = new System.Drawing.Point(169, 145);
+            this.txtPulseQuantity.Mask = "0000";
+            this.txtPulseQuantity.Name = "txtPulseQuantity";
+            this.txtPulseQuantity.Size = new System.Drawing.Size(119, 24);
+            this.txtPulseQuantity.TabIndex = 11;
+            this.txtPulseQuantity.ValidatingType = typeof(int);
+            // 
             // maskedTxtCustomerTcId
             // 
             this.maskedTxtCustomerTcId.CausesValidation = false;
@@ -75,7 +87,7 @@
             // 
             // btnAddSales
             // 
-            this.btnAddSales.Location = new System.Drawing.Point(294, 137);
+            this.btnAddSales.Location = new System.Drawing.Point(315, 173);
             this.btnAddSales.Name = "btnAddSales";
             this.btnAddSales.Size = new System.Drawing.Size(84, 29);
             this.btnAddSales.TabIndex = 9;
@@ -156,6 +168,7 @@
             // 
             // grpSalesDetails
             // 
+            this.grpSalesDetails.Controls.Add(this.dgvSales);
             this.grpSalesDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.grpSalesDetails.Location = new System.Drawing.Point(12, 230);
             this.grpSalesDetails.Name = "grpSalesDetails";
@@ -164,14 +177,15 @@
             this.grpSalesDetails.TabStop = false;
             this.grpSalesDetails.Text = "Sales Details";
             // 
-            // txtPulseQuantity
+            // dgvSales
             // 
-            this.txtPulseQuantity.Location = new System.Drawing.Point(169, 145);
-            this.txtPulseQuantity.Mask = "000";
-            this.txtPulseQuantity.Name = "txtPulseQuantity";
-            this.txtPulseQuantity.Size = new System.Drawing.Size(119, 24);
-            this.txtPulseQuantity.TabIndex = 11;
-            this.txtPulseQuantity.ValidatingType = typeof(int);
+            this.dgvSales.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSales.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
+            this.dgvSales.Location = new System.Drawing.Point(3, 20);
+            this.dgvSales.Name = "dgvSales";
+            this.dgvSales.ReadOnly = true;
+            this.dgvSales.Size = new System.Drawing.Size(816, 150);
+            this.dgvSales.TabIndex = 0;
             // 
             // PulsesWholesaler
             // 
@@ -187,6 +201,8 @@
             this.grpCustomerInformation.ResumeLayout(false);
             this.grpCustomerInformation.PerformLayout();
             this.grpStockStatus.ResumeLayout(false);
+            this.grpSalesDetails.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSales)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -206,6 +222,7 @@
         private System.Windows.Forms.MaskedTextBox maskedTxtCustomerTcId;
         private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.MaskedTextBox txtPulseQuantity;
+        private System.Windows.Forms.DataGridView dgvSales;
     }
 }
 

@@ -13,35 +13,21 @@ namespace PulsesWholesaler
     class ConnectionController
     {
         private string _connectionString = Properties.Settings.Default.ConnectionString;
-        SqlConnection connection;
-        SqlDataAdapter sqlAdapter;
 
-        public Object OpenConnection()
+        public SqlConnection connect()
         {
-            connection = new SqlConnection(_connectionString);
-
-            if (connection.State == ConnectionState.Closed)
+            SqlConnection con = new SqlConnection(_connectionString);
+            try
             {
-                connection.Open();
+                con.Open();
             }
-
-            return connection;
+            catch (Exception)
+            {
+                MessageBox.Show("Oops! Couldn\'t Connect Database!", "Alert", MessageBoxButtons.OK);
+            }
+            return con;
         }
 
-        public DataSet GetData(string query, string table)
-        {
-            return retrieveObjects(query, table);
-        }
 
-        private DataSet retrieveObjects(string query, string table)
-        {
-            this.OpenConnection();
-
-            sqlAdapter = new SqlDataAdapter(query, connection);
-            DataSet data_set = new DataSet();
-            sqlAdapter.Fill(data_set, table);
-            connection.Close();
-            return data_set;
-        }
     }
 }
