@@ -42,6 +42,8 @@
             this.btnReload = new System.Windows.Forms.Button();
             this.grpSalesDetails = new System.Windows.Forms.GroupBox();
             this.dgvSales = new System.Windows.Forms.DataGridView();
+            this.lblSalesCount = new System.Windows.Forms.Label();
+            this.lblTotalSaleCount = new System.Windows.Forms.Label();
             this.grpCustomerInformation.SuspendLayout();
             this.grpStockStatus.SuspendLayout();
             this.grpSalesDetails.SuspendLayout();
@@ -172,7 +174,7 @@
             this.grpSalesDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.grpSalesDetails.Location = new System.Drawing.Point(12, 230);
             this.grpSalesDetails.Name = "grpSalesDetails";
-            this.grpSalesDetails.Size = new System.Drawing.Size(825, 208);
+            this.grpSalesDetails.Size = new System.Drawing.Size(825, 195);
             this.grpSalesDetails.TabIndex = 2;
             this.grpSalesDetails.TabStop = false;
             this.grpSalesDetails.Text = "Sales Details";
@@ -184,14 +186,36 @@
             this.dgvSales.Location = new System.Drawing.Point(3, 20);
             this.dgvSales.Name = "dgvSales";
             this.dgvSales.ReadOnly = true;
-            this.dgvSales.Size = new System.Drawing.Size(816, 150);
+            this.dgvSales.Size = new System.Drawing.Size(816, 169);
             this.dgvSales.TabIndex = 0;
+            // 
+            // lblSalesCount
+            // 
+            this.lblSalesCount.AutoSize = true;
+            this.lblSalesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblSalesCount.Location = new System.Drawing.Point(818, 428);
+            this.lblSalesCount.Name = "lblSalesCount";
+            this.lblSalesCount.Size = new System.Drawing.Size(15, 15);
+            this.lblSalesCount.TabIndex = 3;
+            this.lblSalesCount.Text = "0";
+            this.lblSalesCount.Visible = false;
+            // 
+            // lblTotalSaleCount
+            // 
+            this.lblTotalSaleCount.AutoSize = true;
+            this.lblTotalSaleCount.Location = new System.Drawing.Point(726, 430);
+            this.lblTotalSaleCount.Name = "lblTotalSaleCount";
+            this.lblTotalSaleCount.Size = new System.Drawing.Size(86, 13);
+            this.lblTotalSaleCount.TabIndex = 4;
+            this.lblTotalSaleCount.Text = "Total Sale Count";
             // 
             // PulsesWholesaler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(849, 450);
+            this.Controls.Add(this.lblTotalSaleCount);
+            this.Controls.Add(this.lblSalesCount);
             this.Controls.Add(this.grpSalesDetails);
             this.Controls.Add(this.grpStockStatus);
             this.Controls.Add(this.grpCustomerInformation);
@@ -204,6 +228,7 @@
             this.grpSalesDetails.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSales)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -223,6 +248,8 @@
         private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.MaskedTextBox txtPulseQuantity;
         private System.Windows.Forms.DataGridView dgvSales;
+        private System.Windows.Forms.Label lblSalesCount;
+        private System.Windows.Forms.Label lblTotalSaleCount;
     }
 }
 

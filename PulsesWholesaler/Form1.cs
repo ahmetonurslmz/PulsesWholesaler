@@ -129,10 +129,14 @@ namespace PulsesWholesaler
             try
             {
                 sales = new Sales();
-                binder.DataSource = sales.fetch();
+                DataTable salesTable = sales.fetch();
+                binder.DataSource = salesTable;
                 dgvSales.DataSource = binder;
+                lblSalesCount.Text = salesTable.Rows.Count.ToString();
+                lblSalesCount.Visible = true;
 
-            } catch (Exception error)
+            }
+            catch (Exception error)
             {
                 MessageBox.Show(error.Message.ToString(), "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
