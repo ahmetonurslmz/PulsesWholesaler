@@ -24,9 +24,26 @@ namespace PulsesWholesaler
         {
             SqlCommand allSalesCmd = new SqlCommand("PfetchSales", con);
             SqlDataAdapter sqlDa = new SqlDataAdapter(allSalesCmd);
-            DataTable data_set = new DataTable();
+            DataTable data_table = new DataTable();
+            sqlDa.Fill(data_table);
+            return data_table;
+        }
+
+        public Boolean create(long customerTcId, string customerFullName, int pulseTypeId, int pulseQuantity)
+        {
+            SqlCommand cmd = new SqlCommand("PcreateSale", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@CustomerTcId", customerTcId);
+            cmd.Parameters.AddWithValue("@CustomerFullName", customerFullName);
+            cmd.Parameters.AddWithValue("@PulseTypeId", pulseTypeId);
+            cmd.Parameters.AddWithValue("@PulseQuantity", pulseQuantity);
+
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet data_set = new DataSet();
             sqlDa.Fill(data_set);
-            return data_set;
+
+            return true;
         }
     }
 }

@@ -28,6 +28,12 @@ namespace PulsesWholesaler
             this.fetchSales();
         }
 
+        private void clearCustomerInformationForm()
+        {
+            maskedTxtCustomerTcId.Text = null;
+            txtCustomerFullName.Text = "";
+            txtPulseQuantity.Text = null;
+        }
 
 
         private void btnAddSales_Click(object sender, EventArgs e)
@@ -84,7 +90,16 @@ namespace PulsesWholesaler
                 {
                     throw new Exception("You must enter pulse quantity.");
                 }
-            } catch (Exception error)
+
+                sales = new Sales();
+                Boolean status = sales.create(customerTcId, customerFullName, pulseType, pulseQuantity);
+                if (status)
+                {
+                    fetchSales();
+                    clearCustomerInformationForm();
+                }
+            }
+            catch (Exception error)
             {
                 MessageBox.Show(error.Message.ToString(), "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
