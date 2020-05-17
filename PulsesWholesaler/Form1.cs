@@ -14,6 +14,7 @@ namespace PulsesWholesaler
     public partial class PulsesWholesaler : Form
     {
         ConnectionController connection;
+        PulseStocks pulseStocks;
         BindingSource binder = new BindingSource();
 
         public PulsesWholesaler()
@@ -31,8 +32,64 @@ namespace PulsesWholesaler
 
         private void btnAddSales_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(((KeyValuePair<int, string>)comboPulseType.SelectedItem).Key.ToString(), "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            long customerTcId;
+            string customerFullName;
+            int pulseType;
+            int pulseQuantity;
 
+            try
+            {
+                if (maskedTxtCustomerTcId.Text.ToString().Length != 0)
+                {
+                    if (maskedTxtCustomerTcId.MaskCompleted)
+                    {
+                        customerTcId = Convert.ToInt64(maskedTxtCustomerTcId.Text);
+                    }
+                    else
+                    {
+                        throw new Exception("Invalid Customer T.C. ID");
+                    }
+                }
+                else
+                {
+                    throw new Exception("You must enter customer T.C field.");
+                }
+                if (txtCustomerFullName.TextLength != 0)
+                {
+                    customerFullName = txtCustomerFullName.Text;
+                }
+                else
+                {
+                    throw new Exception("You must enter customer full name.");
+                }
+                if (comboPulseType.SelectedIndex > -1)
+                {
+                    pulseType = ((KeyValuePair<int, string>)comboPulseType.SelectedItem).Key;
+                }
+                else
+                {
+                    throw new Exception("You must select pulse type.");
+                }
+                if (txtPulseQuantity.Text.ToString().Length != 0)
+                {
+                    pulseQuantity = Convert.ToInt32(txtPulseQuantity.Text);
+                }
+                else
+                {
+                    throw new Exception("You must enter pulse quantity.");
+                }
+
+                Console.WriteLine(customerTcId.ToString(), customerFullName, pulseType.ToString(), pulseQuantity.ToString());
+
+            } catch (Exception error)
+            {
+                MessageBox.Show(error.Message.ToString(), "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void checkPulseStockAvailability() { 
+        
         }
 
         private void fetchSales()
@@ -69,12 +126,9 @@ namespace PulsesWholesaler
                     {
                         grpStockStatus.Controls.Clear();
 
-
                         // fetch Current Stocks
-                        DataSet data_set = new DataSet();
-                        SqlCommand allPulseStocks = new SqlCommand("PfetchPulseStocks", con);
-                        SqlDataAdapter sqlDa = new SqlDataAdapter(allPulseStocks);
-                        sqlDa.Fill(data_set, "pulseStocksTable");
+                        pulseStocks = new PulseStocks();
+                        DataSet data_set = pulseStocks.fetch(con);
 
 
                         int count = data_set.Tables[0].Rows.Count;
@@ -86,6 +140,7 @@ namespace PulsesWholesaler
                         {
                             DataRow table = data_set.Tables[0].Rows[i];
 
+                            // If pulse stock is not enough for next sales, do not add to comboBox source.
                             if (Convert.ToInt32(table.ItemArray.GetValue(1).ToString()) != 0) {
                                comboSource.Add(Convert.ToInt32(table.ItemArray.GetValue(0).ToString()), table.ItemArray.GetValue(2).ToString());
                             }
